@@ -1,9 +1,12 @@
-<script>0
+<script>
+import PCard from "@/components/pCard.vue";
+
+0
 import Nav from "@/components/Nav.vue";
 
 export default {
   name: "Home",
-  components: {Nav},
+  components: {PCard, Nav},
   data() {
     return {
       activeIndex: 0,
@@ -26,7 +29,6 @@ export default {
   methods: {
     handleCarouselChange(index) {
       this.activeIndex = index;
-      console.log(this.activeIndex)
     },
 
   }
@@ -36,6 +38,26 @@ export default {
 <template>
 <div>
   <el-container>
+    <div class="aside">
+      <div class="aside-item" id="goRec">
+        <a href="#recommend">
+          <i class="el-icon-s-opportunity"></i>
+          <span>推荐</span>
+        </a>
+      </div>
+      <div class="aside-item" id="goHot">
+        <a href="#hot">
+          <i class="el-icon-position"></i>
+          <span>热门</span>
+        </a>
+      </div>
+      <div class="aside-item" id="goTop">
+        <a href="javascript:scroll(0,0)">
+          <i class="el-icon-caret-top"></i>
+          <span>Top</span>
+        </a>
+      </div>
+    </div>
     <el-header height="500px">
       <div class="header-contain">
         <Nav></Nav>
@@ -50,77 +72,28 @@ export default {
       </div>
     </el-header>
     <el-main>
-      <div class="recommend-container">
+      <div class="recommend-container" id="recommend">
         <div class="recommend-head">
           <h2>推荐藏品</h2>
           <a href="www.baidu.com">
             进入市场
           </a>
         </div>
-        <el-row :gutter="20" type="flex" justify="center" class="row">
-          <el-col :span="4" v-for="(emoji,index) in emojis">
-            <el-card :body-style="{ padding: '0px' }" shadow="hover">
-              <img :src="emoji" class="image" alt="">
-              <div style="padding: 14px;">
-                <span>脸红表情</span>
-                <div class="bottom clearfix">
-                  <time class="time">{{ currentDate }}</time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20" type="flex" justify="center" class="row">
-          <el-col :span="4" v-for="(emoji,index) in emojis">
-            <el-card :body-style="{ padding: '0px' }" shadow="hover">
-              <img :src="emoji" class="image" alt="">
-              <div style="padding: 14px;">
-                <span>脸红表情</span>
-                <div class="bottom clearfix">
-                  <time class="time">{{ currentDate }}</time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
+        <div class="cards-container">
+          <PCard v-for="n in 8" imgSrc="../assets/homePic/6.jpeg" price="5瓶盖" pName="脸红表情"></PCard>
+        </div>
+
       </div>
-      <div class="hot-container">
+      <div class="hot-container" id="hot">
         <div class="hot-head">
           <h2>热门藏品</h2>
           <a href="www.baidu.com">
             进入市场
           </a>
         </div>
-        <el-row :gutter="20" type="flex" justify="center" class="row">
-          <el-col :span="4" v-for="(emoji,index) in emojis">
-            <el-card :body-style="{ padding: '0px' }" shadow="hover">
-              <img :src="emoji" class="image" alt="">
-              <div style="padding: 14px;">
-                <span>脸红表情</span>
-                <div class="bottom clearfix">
-                  <time class="time">{{ currentDate }}</time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20" type="flex" justify="center" class="row">
-          <el-col :span="4" v-for="(emoji,index) in emojis">
-            <el-card :body-style="{ padding: '0px' }" shadow="hover">
-              <img :src="emoji" class="image" alt="">
-              <div style="padding: 14px;">
-                <span>脸红表情</span>
-                <div class="bottom clearfix">
-                  <time class="time">{{ currentDate }}</time>
-                  <el-button type="text" class="button">操作按钮</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
+        <div class="cards-container">
+          <PCard v-for="n in 8" imgSrc="../assets/homePic/6.jpeg" price="5瓶盖" pName="脸红表情"></PCard>
+        </div>
       </div>
     </el-main>
     <el-footer>Footer</el-footer>
@@ -133,6 +106,57 @@ export default {
   text-align: center;
   background-color: rgb(38,41,48);
   border-radius: 5px;
+}
+
+.aside{
+  width:3.5vw;
+  height:12vw;
+  position: fixed;
+  top: 30%;
+  left: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  .aside-item{
+    width: 100%;
+    height:3.5vw;
+    background-color: rgb(52,62,75);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    a{
+      display: block;
+      color: #fff;
+      width: 100%;
+      height: 100%;
+      text-decoration:none;
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span{
+        font-size: 12px;
+
+      }
+    }
+    a:hover{
+      background-color: #2f3744;
+    }
+  }
+  #goRec{
+    border-radius: 2px 2px 0 0;
+  }
+
+  #goHot{
+
+  }
+
+  #goTop{
+    margin-top: 1.5vw;
+    border-radius: 0 0 2px 2px;
+  }
 }
 
 .el-main {
@@ -149,12 +173,29 @@ export default {
     justify-content: center;
     align-items: center;
     width: 70%;
-    height: auto;
+    height: 70vh;
     background-color: #fff;
     margin-bottom: 10vh;
     padding-top: 5vh;
     padding-bottom: 5vh;
     gap: 2vh;
+
+    .cards-container{
+      width: 60vw;
+      height: 66vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+
+      pCard{
+
+      }
+    }
+
+    .el-card{
+    }
     .recommend-head{
       width: 85%;
       height: 4vh;
@@ -209,12 +250,25 @@ export default {
     justify-content: center;
     align-items: center;
     width: 70%;
-    height: auto;
+    height: 70vh;
     background-color: #fff;
     margin-bottom: 10vh;
-    gap: 2vh;
     padding-top: 5vh;
     padding-bottom: 5vh;
+    gap: 2vh;
+    .cards-container{
+      width: 60vw;
+      height: 66vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+
+      pCard{
+
+      }
+    }
     .hot-head{
       width: 85%;
       height: 4vh;

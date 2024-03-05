@@ -1,14 +1,15 @@
 <script>
 import Nav from "@/components/Nav.vue";
+import PCard from "@/components/pCard.vue";
 export default {
   name: "Market",
-  components: {Nav},
+  components: {PCard, Nav},
   data() {
     return {
       value: '虚拟手办',
       searchText: '',
       curPage: 1,
-      total: 33,
+      total: 29,
       curType: '虚拟手办',
       types: [{
         value: '虚拟手办',
@@ -21,10 +22,9 @@ export default {
         label: '头像'
       }],
       emojis:[
-          require('../assets/marketPic/2.jpeg'),
-          require('../assets/marketPic/3.jpeg'),
-          require('../assets/marketPic/6.jpeg'),
-
+        "../assets/marketPic/2.jpeg",
+        "../assets/marketPic/3.jpeg",
+        "../assets/marketPic/6.jpeg",
       ]
     }
   },
@@ -34,14 +34,14 @@ export default {
       console.log(this.curPage)
     },
     calCurPageItemCount(){
-      let totalPage= Math.ceil(this.total/15)
+      let totalPage= Math.ceil(this.total/12)
       if(this.curPage<totalPage){
-        return 15
+        return 12
       }else{
-        if(this.total%15===0) {
-          return 15
+        if(this.total%12===0) {
+          return 12
         }
-        return this.total%15
+        return this.total%12
       }
     },
     handleFilterChange(value){
@@ -86,19 +86,18 @@ export default {
     </div>
 
     <div class="item-container">
-      <div class="items">
-        <el-row :gutter="20">
-          <el-col :span="4" v-for="n in calCurPageItemCount()" :key="n">
-            <el-card>
-              <img :src="getPicUrL()" alt="图片" style="width: 100%;">
-            </el-card>
-          </el-col>
-        </el-row>
+      <div class="item-bg">
+        <div class="items">
+
+          <PCard v-for="n in calCurPageItemCount()" :imgSrc="getPicUrL()" price="5瓶盖" pName="脸红表情"></PCard>
+
+        </div>
       </div>
+
       <el-pagination
           background
           layout="prev, pager, next"
-          :page-size="15"
+          :page-size="12"
           :total="total"
           @current-change="handleCurPageChange"
       >
@@ -122,7 +121,7 @@ export default {
     background-color: grey;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
     .el-select{
@@ -144,20 +143,24 @@ export default {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    .items{
+    .item-bg{
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between; /* 确保卡片之间的间距均匀 */
-      gap: 20px;
+      justify-content: center;
+      align-items: center;
       height: 90vh;
-      width: 70%;
+      width: 75%;
       background-color: #fff;
-      .el-row{
-        padding: 20px;
-        .el-col{
-          padding:20px;
-          width: 20%;
+      .items{
+        display: grid;
+        grid-template-rows: repeat(3, 1fr); /* 定义有三行 */
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: space-between; /* 确保卡片之间的间距均匀 */
+        height: 90vh;
+        width: 90%;
+        background-color: #fff;
+        align-items: center;
+        pCard{
+
         }
       }
     }

@@ -11,7 +11,6 @@ export default {
   components: {
   },
   mounted() {
-    this.$router.push('/public')
   }
 }
 </script>

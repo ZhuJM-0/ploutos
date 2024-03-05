@@ -31,7 +31,7 @@ export default {
 <template>
   <div class="nav">
     <div class="logo">
-
+      <img src="../assets/LOGO.png" alt="">
     </div>
     <div class="nav-left">
       <el-menu
@@ -49,7 +49,6 @@ export default {
       </el-menu>
     </div>
     <div class="nav-right">
-      <el-button >登录/注册</el-button>
       <el-button @click="goToUser">个人中心</el-button>
     </div>
   </div>
@@ -63,11 +62,16 @@ export default {
   padding-left: 20px;
   padding-right: 20px;
   .logo{
-    width: 200px;
-    height: 190%;
-    background: url("../assets/svgs/logo.svg") no-repeat;
-    background-size: 100% 100%;
-    transform: translate(0,-24%);
+    width: 8vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2vw;
+    img{
+      width: 100%;
+      height: auto;
+    }
   }
   .nav-left{
     flex: 1;

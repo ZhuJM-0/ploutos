@@ -6,7 +6,7 @@ export default {
   },
   methods:{
     goToHome(){
-      this.$router.push('/home')
+      this.$router.push('/login')
     }
   }
 }
@@ -14,7 +14,9 @@ export default {
 
 <template>
   <div class="container">
-    <div class="logo"></div>
+    <div class="logo">
+      <img src="../assets/LOGO.png" alt="">
+    </div>
     <h1 class="text">Ploutos——数字藏品智能交易平台</h1>
     <div class="btn" @click="goToHome">登录</div>
     <div class="video-box">
@@ -38,10 +40,15 @@ export default {
     position: absolute;
     z-index: 2;
     width: 200px;
-    height: 200px;
-    background: url("../assets/svgs/logo.svg") no-repeat;
-    background-size: 100% 100%;
-    transform: translate(40%,-24%);
+    height: 60px;
+    transform: translate(40%,40%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      width: 100%;
+      height: auto;
+    }
   }
 
   .text{

@@ -15,11 +15,13 @@ export default {
         } else if(index === '2') {
           this.$router.push('/UserCollection')
         }
+        else if(index === '3') {
+          this.$router.push('/UserSetting')
+        }
       }
     },
   },
   mounted(){
-    this.$router.push('/UserInfo')
   }
 }
 </script>
@@ -28,8 +30,8 @@ export default {
 <el-container>
   <el-aside>
     <div class="userInfo">
-      <div class="logo"></div>
       <el-avatar icon="el-icon-user-solid" :size="50"></el-avatar>
+      <span>用户名</span>
     </div>
     <el-menu
         default-active="1"
@@ -48,6 +50,13 @@ export default {
         <i class="el-icon-star-off"></i>
         <span slot="title">我的藏品</span>
       </el-menu-item>
+      <el-menu-item index="3">
+        <i class="el-icon-setting"></i>
+        <span slot="title">设置</span>
+      </el-menu-item>
+      <div class="logo">
+        <img src="../assets/LOGO.png" alt="">
+      </div>
     </el-menu>
   </el-aside>
   <el-main>
@@ -74,14 +83,8 @@ export default {
       height: 10%;
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
-      .logo{
-        width: 200px;
-        height: 150%;
-        background: url("../assets/svgs/logo.svg") no-repeat;
-        background-size: 100% 100%;
-      }
     }
   }
   .el-main{
@@ -97,8 +100,26 @@ export default {
       justify-content: center;
       align-items: center;
       height: 100%;
-      width: 80%;
+      width: 100%;
     }
   }
+
+  .logo{
+    position: absolute;
+    z-index: 2;
+    width: 10vw;
+    height: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 10px;
+    img{
+      width: auto;
+      height: 100%;
+    }
+  }
+}
+.el-menu-item{
+  text-align: justify;
 }
 </style>
